@@ -41,10 +41,12 @@ namespace HmsPlugin
             Debug.Log("[HMS]: Sign in " + authService);
             authService.StartSignIn((authId) =>
             {
+                Debug.Log($"[HMS]: SignIn success, DisName:{authId.DisplayName}, IdToken:{authId.IdToken}");
                 HuaweiId = authId;
                 OnSignInSuccess?.Invoke(authId);
             }, (error) =>
             {
+                Debug.Log($"[HMS]: SignIn fail, errCode:{error.ErrorCode}");
                 HuaweiId = null;
                 OnSignInFailed?.Invoke(error);
             });
